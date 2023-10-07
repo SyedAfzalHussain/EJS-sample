@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJS Project</title>
+</head>
+<style>
+    .complete {
+        display: none;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .view {
+        cursor: pointer;
+    }
+</style>
+
+<body style="padding: 0;margin: 0;">
+    <%- include("Header") -%>
+        <h1>This is Home page</h1>
+        <span class="teaser">text goes here</span>
+
+
+        <span class="complete"> this is the
+            complete text being shown</span>
+
+        <% for( let i=0; i < posts.length; i++) {%>
+            <br>
+            <h1>
+                <%= posts[i].title %>
+            </h1>
+            <br>
+            <p>
+                <%= posts[i].content %>
+                    <a href="/post/<%=posts[i].title %>" class="view">more...</a>
+            </p>
+            <% } %>
+                <script>
+                    document.querySelector('.view').addEventListener('click', () => {
+                        document.querySelector('.complete').classList.toggle('show');
+                        if (document.querySelector('.complete').classList.contains('show')) {
+                            document.querySelector('.view').innerHTML = 'less...';
+                        }
+                        else {
+                            document.querySelector('.view').innerHTML = 'more...';
+                        }
+                    })
+                </script>
+</body>
+
+</html>
